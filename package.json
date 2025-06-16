@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "tsc-watch src/robot-game.ts --outDir ./dist --onSuccess \"node ./dist/robot-game.js\""
+    "start:robot": "tsc-watch src/robot-game.ts --outDir ./dist --onSuccess \"node ./dist/robot-game.js\"",
+    "start:valid": "tsc-watch src/valid-paranthesis.ts --outDir ./dist --onSuccess \"node ./dist/valid-paranthesis.js\""
   },
   "keywords": [],
   "author": "",
