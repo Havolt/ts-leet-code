@@ -8,7 +8,9 @@ function gridGame(grid: number[][]): number {
     const rowTwoPotential: number[] = [];
 
     const setPotentialArrays = () => {
-      let counter = 0;
+      let counter = secondRow[secondRow.length - 1];
+      rowOnePotential.splice(0);
+      rowTwoPotential.splice(0);
 
       [...firstRow].reverse().forEach((value) => {
         counter += value;
@@ -27,9 +29,10 @@ function gridGame(grid: number[][]): number {
       let moveDownIndex = -1;
 
       for (let i = 0; i < rowOnePotential.length - 1; i++) {
-        // console.log(rowTwoPotential[i], rowOnePotential[i + 1]);
+        console.log(rowTwoPotential[i], rowOnePotential[i + 1]);
         if (rowTwoPotential[i] > rowOnePotential[i + 1]) {
           moveDownIndex = i;
+          break;
         }
       }
 
@@ -64,6 +67,7 @@ function gridGame(grid: number[][]): number {
           //  console.log(secondCounter);
         }
         console.log({ secondCounter });
+        return secondCounter;
         //   console.log(secondCounter);
       }
 
@@ -75,14 +79,27 @@ function gridGame(grid: number[][]): number {
 
     setPotentialArrays();
 
+    console.log({ firstRow });
+    console.log({ secondRow });
+
+    console.log("---");
+
+    console.log({ rowOnePotential });
+    console.log({ rowTwoPotential });
+
     smartNavigation(true);
 
     setPotentialArrays();
 
-    smartNavigation();
+    console.log("----------------");
 
-    //  console.log(rowOnePotential);
-    //  console.log(rowTwoPotential);
+    console.log({ firstRow });
+    console.log({ secondRow });
+
+    console.log("---");
+
+    console.log({ rowOnePotential });
+    console.log({ rowTwoPotential });
 
     //  console.log({ firstRow });
     //  console.log({ secondRow });
@@ -90,22 +107,26 @@ function gridGame(grid: number[][]): number {
     //  console.log(grid);
 
     //  firstRow.reduce();
-    return 0;
+    return smartNavigation() || 0;
   };
 
   const optimumPath = getOptimumPath(grid);
   return optimumPath;
 }
 
+// gridGame([
+//   [2, 5, 4],
+//   [1, 5, 1],
+// ]);
+// gridGame([
+//   [3, 3, 1],
+//   [8, 5, 2],
+// ]);
+// gridGame([
+//   [1, 3, 1, 15],
+//   [1, 3, 3, 1],
+// ]);
 gridGame([
-  [2, 5, 4],
-  [1, 5, 1],
-]);
-gridGame([
-  [3, 3, 1],
-  [8, 5, 2],
-]);
-gridGame([
-  [1, 3, 1, 15],
-  [1, 3, 3, 1],
+  [20, 3, 20, 17, 2, 12, 15, 17, 4, 15],
+  [20, 10, 13, 14, 15, 5, 2, 3, 14, 3],
 ]);
