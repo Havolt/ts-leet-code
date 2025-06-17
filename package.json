@@ -9,7 +9,8 @@
     "start:merge-linked": "tsc-watch src/merge-two-linked-lists.ts --outDir ./dist --onSuccess \"node ./dist/merge-two-linked-lists.js\"",
     "start:needle-haystack": "tsc-watch src/needle-haystack.ts --outDir ./dist --onSuccess \"node ./dist/needle-haystack.js\"",
     "start:search-insert": "tsc-watch src/search-insert.ts --outDir ./dist --onSuccess \"node ./dist/search-insert.js\"",
-    "start:length-last": "tsc-watch src/length-last-word.ts --outDir ./dist --onSuccess \"node ./dist/length-last-word.js\""
+    "start:length-last": "tsc-watch src/length-last-word.ts --outDir ./dist --onSuccess \"node ./dist/length-last-word.js\"",
+    "start:plus-one": "tsc-watch src/plus-one.ts --outDir ./dist --onSuccess \"node ./dist/plus-one.js\""
   },
   "keywords": [],
   "author": "",
