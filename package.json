@@ -10,7 +10,8 @@
     "start:needle-haystack": "tsc-watch src/needle-haystack.ts --outDir ./dist --onSuccess \"node ./dist/needle-haystack.js\"",
     "start:search-insert": "tsc-watch src/search-insert.ts --outDir ./dist --onSuccess \"node ./dist/search-insert.js\"",
     "start:length-last": "tsc-watch src/length-last-word.ts --outDir ./dist --onSuccess \"node ./dist/length-last-word.js\"",
-    "start:plus-one": "tsc-watch src/plus-one.ts --outDir ./dist --onSuccess \"node ./dist/plus-one.js\""
+    "start:plus-one": "tsc-watch src/plus-one.ts --outDir ./dist --onSuccess \"node ./dist/plus-one.js\"",
+    "start:add-binary": "tsc-watch src/add-binary.ts --outDir ./dist --onSuccess \"node ./dist/add-binary.js\""
   },
   "keywords": [],
   "author": "",
