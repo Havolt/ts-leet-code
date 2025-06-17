@@ -7,7 +7,8 @@
     "start:robot": "tsc-watch src/robot-game.ts --outDir ./dist --onSuccess \"node ./dist/robot-game.js\"",
     "start:valid": "tsc-watch src/valid-paranthesis.ts --outDir ./dist --onSuccess \"node ./dist/valid-paranthesis.js\"",
     "start:merge-linked": "tsc-watch src/merge-two-linked-lists.ts --outDir ./dist --onSuccess \"node ./dist/merge-two-linked-lists.js\"",
-    "start:needle-haystack": "tsc-watch src/needle-haystack.ts --outDir ./dist --onSuccess \"node ./dist/needle-haystack.js\""
+    "start:needle-haystack": "tsc-watch src/needle-haystack.ts --outDir ./dist --onSuccess \"node ./dist/needle-haystack.js\"",
+    "start:search-insert": "tsc-watch src/search-insert.ts --outDir ./dist --onSuccess \"node ./dist/search-insert.js\""
   },
   "keywords": [],
   "author": "",
