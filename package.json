@@ -12,7 +12,8 @@
     "start:length-last": "tsc-watch src/length-last-word.ts --outDir ./dist --onSuccess \"node ./dist/length-last-word.js\"",
     "start:plus-one": "tsc-watch src/plus-one.ts --outDir ./dist --onSuccess \"node ./dist/plus-one.js\"",
     "start:add-binary": "tsc-watch src/add-binary.ts --outDir ./dist --onSuccess \"node ./dist/add-binary.js\"",
-    "start:remove-duplicate-linked": "tsc-watch src/remove-duplicate-linked.ts --outDir ./dist --onSuccess \"node ./dist/remove-duplicate-linked.js\""
+    "start:remove-duplicate-linked": "tsc-watch src/remove-duplicate-linked.ts --outDir ./dist --onSuccess \"node ./dist/remove-duplicate-linked.js\"",
+    "start:roman-to-integer": "tsc-watch src/roman-to-integer.ts --outDir ./dist --onSuccess \"node ./dist/roman-to-integer.js\""
   },
   "keywords": [],
   "author": "",
