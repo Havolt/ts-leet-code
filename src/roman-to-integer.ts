@@ -37,17 +37,23 @@ function romanToInt(s: string): number {
     }
   }
 
+  let totalNum = 0;
+
   //   Loop through splitNumbers and do arithmetic on it
   for (let i = splitNumbers.length - 1; i >= 0; i--) {
-    console.log(splitNumbers[i]);
+    if (i === splitNumbers.length - 1) {
+      totalNum += splitNumbers[i];
+    } else if (splitNumbers[i] < splitNumbers[i + 1]) {
+      totalNum -= splitNumbers[i];
+    } else {
+      totalNum += splitNumbers[i];
+    }
   }
 
-  console.log(splitNumbers);
-
-  return 0;
+  return totalNum;
 }
 
-console.log(romanToInt("III"));
-console.log(romanToInt("IV"));
+// romanToInt("III");
+romanToInt("XXC");
 // console.log(romanToInt("LVIII"));
 // console.log(romanToInt("MCMXCIV"));
