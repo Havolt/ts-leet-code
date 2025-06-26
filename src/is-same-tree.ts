@@ -52,26 +52,30 @@ class Tree {
 }
 
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
-  //   console.log(p, q);
-  const treeValues: number[] = [];
+  const treeValues: (number | null)[] = [];
 
   const traversePath = (node: TreeNode | null) => {
-    if (node === null) {
+    if (node === undefined) {
       return;
     }
-    treeValues.push(node.val);
-    traversePath(node.left);
-    traversePath(node.right);
+
+    const nodeVal = node?.val;
+
+    if (nodeVal && !isNaN(nodeVal)) {
+      treeValues.push(node.val);
+      traversePath(node.left);
+      traversePath(node.right);
+    } else {
+      treeValues.push(null);
+    }
   };
 
   traversePath(p);
   traversePath(q);
 
-  //   console.log(treeValues);
-
   const treeValsLength = treeValues.length;
 
-  if (treeValsLength % 2 !== 0) {
+  if (treeValsLength % 2 !== 0 || treeValsLength === 1) {
     return false;
   }
 
