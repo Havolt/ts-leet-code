@@ -15,7 +15,8 @@
     "start:remove-duplicate-linked": "tsc-watch src/remove-duplicate-linked.ts --outDir ./dist --onSuccess \"node ./dist/remove-duplicate-linked.js\"",
     "start:roman-to-integer": "tsc-watch src/roman-to-integer.ts --outDir ./dist --onSuccess \"node ./dist/roman-to-integer.js\"",
     "start:is-same-tree": "tsc-watch src/is-same-tree.ts --outDir ./dist --onSuccess \"node ./dist/is-same-tree.js\"",
-    "start:contains-duplicates": "tsc-watch src/contains-duplicates.ts --outDir ./dist --onSuccess \"node ./dist/contains-duplicates.js\""
+    "start:contains-duplicates": "tsc-watch src/contains-duplicates.ts --outDir ./dist --onSuccess \"node ./dist/contains-duplicates.js\"",
+    "start:missing-number": "tsc-watch src/missing-number.ts --outDir ./dist --onSuccess \"node ./dist/missing-number.js\""
   },
   "keywords": [],
   "author": "",
