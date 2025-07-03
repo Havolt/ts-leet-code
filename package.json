@@ -20,7 +20,8 @@
     "start:count-bits": "tsc-watch src/count-bits.ts --outDir ./dist --onSuccess \"node ./dist/count-bits.js\"",
     "start:pair-sum": "tsc-watch src/pair-sum.ts --outDir ./dist --onSuccess \"node ./dist/pair-sum.js\"",
     "start:merge-sorted-arrays": "tsc-watch src/merge-sorted-arrays.ts --outDir ./dist --onSuccess \"node ./dist/merge-sorted-arrays.js\"",
-    "start:create-hash-map": "tsc-watch src/create-hash-map.ts --outDir ./dist --onSuccess \"node ./dist/create-hash-map.js\""
+    "start:create-hash-map": "tsc-watch src/create-hash-map.ts --outDir ./dist --onSuccess \"node ./dist/create-hash-map.js\"",
+    "start:first-recurring-item": "tsc-watch src/first-recurring-item.ts --outDir ./dist --onSuccess \"node ./dist/first-recurring-item.js\""
   },
   "keywords": [],
   "author": "",
