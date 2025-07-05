@@ -11,4 +11,5 @@ function firstRecurringItem(numberArr: number[]): number | undefined {
 
 console.log(firstRecurringItem([2, 4, 7, 1, 2, 8, 4]));
 console.log(firstRecurringItem([4, 7, 8]));
+console.log(firstRecurringItem([4, 7, 8, 5, 2, 1, 1]));
 console.log(firstRecurringItem([]));
