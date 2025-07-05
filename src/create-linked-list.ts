@@ -1,7 +1,11 @@
-type LinkedNode = {
+class LinkedNode {
   value: number;
   next: LinkedNode | null;
-};
+  constructor(value: number) {
+    this.value = value;
+    this.next = null;
+  }
+}
 
 class LinkedList {
   head: LinkedNode;
@@ -16,19 +20,15 @@ class LinkedList {
     this.length = 1;
   }
   append(value) {
-    let pointer: LinkedNode = this.head;
-    const newNode = {
+    const newNode: LinkedNode = {
       value,
       next: null,
     };
 
-    while (pointer.next !== null) {
-      pointer = pointer.next;
-    }
-
-    pointer.next = newNode;
+    this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
+    return this;
   }
   prepend(value) {
     const newNode: LinkedNode = {
@@ -38,8 +38,9 @@ class LinkedList {
 
     this.head = newNode;
     this.length++;
+    return this;
   }
-  //
+  insert() {}
   toArray() {
     let pointer = this.head;
     const linkedArray: number[] = [pointer.value];
@@ -51,11 +52,11 @@ class LinkedList {
   }
 }
 
-let myLinkedList = new LinkedList(10);
+let myLinkedList = new LinkedList(1);
 myLinkedList.append(5);
 myLinkedList.append(16);
-myLinkedList.prepend(2);
-myLinkedList.prepend(20);
+myLinkedList.prepend(-2);
+myLinkedList.prepend(-20);
 
 console.log(myLinkedList);
 console.log(myLinkedList.toArray());

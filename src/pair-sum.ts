@@ -10,7 +10,7 @@ const pairSum = (array: number[], desiredSum: number): number[][] => {
     }
   }
 
-  //
+  // NOT GOOD AT ALL
   for (const number of array) {
     const partnerNum = desiredSum - +number;
     if (foundNums[number] && foundNums[partnerNum]) {
