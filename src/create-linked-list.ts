@@ -33,6 +33,9 @@ class LinkedList {
     return this;
   }
   insert(index, value) {
+    if (typeof index !== "number") {
+      return new Error("Index needs to be a number");
+    }
     if (index === 0) {
       this.prepend(value);
     } else if (index === this.length) {
