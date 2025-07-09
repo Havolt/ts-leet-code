@@ -20,10 +20,27 @@ class BinarySearchTree {
       this.root = newNode;
       return;
     }
-
-    let insertLocation = this._insertNode(this.root, value);
+    //  Kick off the recursion
+    this._insertNode(this.root, value);
   }
-  lookup(value) {}
+  lookup(value) {
+    return this._findNode(this.root, value);
+  }
+
+  _findNode(currentNode, value) {
+    if (currentNode.value === value) {
+      return currentNode;
+    }
+
+    const nextNode =
+      value < currentNode.value ? currentNode.left : currentNode.right;
+
+    if (nextNode === null) {
+      return null;
+    } else {
+      return this._findNode(nextNode, value);
+    }
+  }
 
   _insertNode(currentNode, value) {
     const nextDirection = value < currentNode.value ? "left" : "right";
