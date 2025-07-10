@@ -42,6 +42,24 @@ class BinarySearchTree {
     }
   }
 
+  _findParentNode(currentNode, value) {
+    console.log("here");
+    if (currentNode.left.value === value) {
+      return { node: currentNode, direction: "left" };
+    } else if (currentNode.right.value === value) {
+      return { node: currentNode, direction: "right" };
+    }
+
+    const nextNode =
+      value < currentNode.value ? currentNode.left : currentNode.right;
+
+    if (nextNode === null) {
+      return null;
+    } else {
+      return this._findParentNode(nextNode, value);
+    }
+  }
+
   _insertNode(currentNode, value) {
     const nextDirection = value < currentNode.value ? "left" : "right";
     const nextNode = currentNode[nextDirection];
@@ -53,7 +71,26 @@ class BinarySearchTree {
     }
   }
 
-  remove(value) {}
+  remove(value: number) {
+    if (!this.root) {
+      return null;
+    }
+    const matchedParentNode = this._findParentNode(this.root, value);
+    const matchedNode = matchedParentNode.node[matchedParentNode.direction];
+
+    console.log(matchedParentNode);
+    console.log(matchedNode);
+
+    if (matchedNode.left === null && matchedNode.right === null) {
+      matchedParentNode.node[matchedParentNode.direction] = null;
+    } else {
+      if (matchedNode.right && matchedNode.right.left) {
+        matchedParentNode;
+      }
+    }
+
+    console.log(matchedParentNode);
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -64,9 +101,9 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-// tree.remove(170);
-console.log(JSON.stringify(traverse(tree.root)));
-console.log(tree.lookup(20));
+tree.remove(170);
+// console.log(JSON.stringify(traverse(tree.root)));
+// console.log(tree.lookup(20));
 //     9
 //  4     20
 //1  6  15  170
