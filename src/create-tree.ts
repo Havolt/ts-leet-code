@@ -81,12 +81,14 @@ class BinarySearchTree {
     console.log(matchedParentNode);
     console.log(matchedNode);
 
-    if (matchedNode.left === null && matchedNode.right === null) {
-      matchedParentNode.node[matchedParentNode.direction] = null;
-    } else {
-      if (matchedNode.right && matchedNode.right.left) {
-        matchedParentNode;
-      }
+    // ! I'll come back to this later
+    if (matchedNode.right === null) {
+      matchedParentNode.node[matchedParentNode.direction] = matchedNode.left;
+    } else if (matchedNode.right && matchedNode.right.left) {
+      matchedParentNode.node[matchedParentNode.direction] =
+        matchedNode.right.left;
+    } else if (matchedNode.right) {
+      matchedParentNode.node[matchedParentNode.direction] = matchedNode.right;
     }
 
     console.log(matchedParentNode);
