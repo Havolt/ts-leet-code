@@ -5,7 +5,22 @@
 
 //For example: fibonacciRecursive(6) should return 8
 
-function fibonacciIterative(n) {}
+function fibonacciIterative(n) {
+  if (n < 2) {
+    console.log(n);
+    return n;
+  }
+  let leftNum = 0;
+  let rightNum = 1;
+  for (let i = 2; i <= n; i++) {
+    const oldLeftNum = leftNum;
+    leftNum = rightNum;
+    rightNum = oldLeftNum + rightNum;
+  }
+
+  console.log(rightNum);
+  return rightNum;
+}
 
 // We need to keep tally of what number we are on and also the last two numbers.
 // Both numbers get added together to make new right number
@@ -30,5 +45,5 @@ function fibonacciRecursive(n: number): number {
   return fibNum;
 }
 
-// fibonacciIterative(6)
-fibonacciRecursive(12);
+fibonacciIterative(6);
+// fibonacciRecursive(12);
