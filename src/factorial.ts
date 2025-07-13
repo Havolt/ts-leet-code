@@ -16,10 +16,15 @@ function findFactorialRecursive(number): number {
   return total;
 }
 
-// function findFactorialIterative(number): number {
-//   //code here
-//   return answer;
-// }
+function findFactorialIterative(number): number {
+  let total = 1;
 
-findFactorialRecursive(10);
-// findFactorialIterative(5);
+  for (let i = number; i > 0; i--) {
+    total *= i;
+  }
+  console.log(total);
+  return total;
+}
+
+// findFactorialRecursive(5);
+findFactorialIterative(10);
