@@ -15,7 +15,34 @@ function mergeSort(array: number[]): number[] {
 }
 
 function merge(left: number[], right: number[]): number[] {
-  return [];
+  let leftPointer = 0;
+  let rightPointer = 0;
+  const combinedArr: number[] = [];
+
+  while (leftPointer < left.length || rightPointer < right.length) {
+    const leftNum = left[leftPointer];
+    const rightNum = right[rightPointer];
+
+    if (leftPointer >= left.length) {
+      combinedArr.push(rightNum);
+      rightPointer++;
+      continue;
+    } else if (rightPointer >= right.length) {
+      combinedArr.push(leftNum);
+      leftPointer++;
+      continue;
+    }
+
+    if (leftNum <= rightNum) {
+      combinedArr.push(leftNum);
+      leftPointer++;
+    } else {
+      combinedArr.push(rightNum);
+      rightPointer++;
+    }
+  }
+  console.log(combinedArr);
+  return combinedArr;
 }
 
 const answer = mergeSort(numbers);
