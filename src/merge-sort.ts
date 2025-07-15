@@ -8,9 +8,6 @@ function mergeSort(array: number[]): number[] {
   const left = array.slice(0, Math.floor(array.length / 2));
   const right = array.slice(Math.floor(array.length / 2));
 
-  console.log(left);
-  console.log(right);
-
   return merge(mergeSort(left), mergeSort(right));
 }
 
@@ -22,26 +19,15 @@ function merge(left: number[], right: number[]): number[] {
   while (leftPointer < left.length || rightPointer < right.length) {
     const leftNum = left[leftPointer];
     const rightNum = right[rightPointer];
+    let useLeftNum = true;
 
-    if (leftPointer >= left.length) {
-      combinedArr.push(rightNum);
-      rightPointer++;
-      continue;
-    } else if (rightPointer >= right.length) {
-      combinedArr.push(leftNum);
-      leftPointer++;
-      continue;
+    if (leftNum === undefined || rightNum <= leftNum) {
+      useLeftNum = false;
     }
 
-    if (leftNum <= rightNum) {
-      combinedArr.push(leftNum);
-      leftPointer++;
-    } else {
-      combinedArr.push(rightNum);
-      rightPointer++;
-    }
+    combinedArr.push(useLeftNum ? leftNum : rightNum);
+    useLeftNum ? leftPointer++ : rightPointer++;
   }
-  console.log(combinedArr);
   return combinedArr;
 }
 
