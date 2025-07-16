@@ -136,6 +136,13 @@ class BinarySearchTree {
       }
     }
   }
+
+  // Move on a row by row basis in the tree menu
+  // Need to save sibling elements to come back to
+  breathFirstSearch() {}
+
+  // Drill down to bottom and get values before moving back up
+  depthFirstSearch() {}
 }
 
 const tree = new BinarySearchTree();
