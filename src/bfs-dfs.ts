@@ -141,43 +141,29 @@ class BinarySearchTree {
   // Need to save sibling elements to come back to
   breathFirstSearch(searchNum) {
     if (this.root === null) {
-      return;
+      return null;
     }
 
-    const currentQueue: TreeNode[] = [this.root];
-    const nextQueue: TreeNode[] = [];
+    const queue: TreeNode[] = [this.root];
 
-    const checkValueAddChildren = (node) => {
-      // console.log(node.value, searchNum);
-      if (node.value === searchNum) {
-        return node;
-      } else {
-        if (node.left !== null) {
-          nextQueue.push(node.left);
-        }
-        if (node.right !== null) {
-          nextQueue.push(node.right);
-        }
-      }
-    };
+    while (queue.length > 0) {
+      const currentNode: TreeNode = queue.shift()!;
 
-    while (currentQueue.length !== 0) {
-      for (const node of currentQueue) {
-        const match = checkValueAddChildren(node);
-        if (match) {
-          console.log(match);
-          return match;
-        }
+      if (currentNode.value === searchNum) {
+        console.log(currentNode);
+        return currentNode;
       }
 
-      currentQueue.splice(0);
-      if (nextQueue.length > 0) {
-        currentQueue.push(...nextQueue);
+      if (currentNode.left) {
+        queue.push(currentNode.left);
       }
-      nextQueue.splice(0);
+
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
     }
 
-    // console.log(currentQueue);
+    return null;
   }
 
   // Drill down to bottom and get values before moving back up
@@ -195,7 +181,7 @@ tree.insert(1);
 // tree.remove(170);
 JSON.stringify(traverse(tree.root));
 // console.log(tree.lookup(20));
-tree.breathFirstSearch(9);
+tree.breathFirstSearch(15);
 //     9
 //  4     20
 //1  6  15  170
