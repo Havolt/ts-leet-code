@@ -139,7 +139,46 @@ class BinarySearchTree {
 
   // Move on a row by row basis in the tree menu
   // Need to save sibling elements to come back to
-  breathFirstSearch() {}
+  breathFirstSearch(searchNum) {
+    if (this.root === null) {
+      return;
+    }
+
+    const currentQueue: TreeNode[] = [this.root];
+    const nextQueue: TreeNode[] = [];
+
+    const checkValueAddChildren = (node) => {
+      // console.log(node.value, searchNum);
+      if (node.value === searchNum) {
+        return node;
+      } else {
+        if (node.left !== null) {
+          nextQueue.push(node.left);
+        }
+        if (node.right !== null) {
+          nextQueue.push(node.right);
+        }
+      }
+    };
+
+    while (currentQueue.length !== 0) {
+      for (const node of currentQueue) {
+        const match = checkValueAddChildren(node);
+        if (match) {
+          console.log(match);
+          return match;
+        }
+      }
+
+      currentQueue.splice(0);
+      if (nextQueue.length > 0) {
+        currentQueue.push(...nextQueue);
+      }
+      nextQueue.splice(0);
+    }
+
+    // console.log(currentQueue);
+  }
 
   // Drill down to bottom and get values before moving back up
   depthFirstSearch() {}
@@ -153,9 +192,10 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-tree.remove(170);
+// tree.remove(170);
 JSON.stringify(traverse(tree.root));
-console.log(tree.lookup(20));
+// console.log(tree.lookup(20));
+tree.breathFirstSearch(9);
 //     9
 //  4     20
 //1  6  15  170
