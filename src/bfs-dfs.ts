@@ -167,7 +167,32 @@ class BinarySearchTree {
   }
 
   // Drill down to bottom and get values before moving back up
-  depthFirstSearch() {}
+  depthFirstSearch(searchNum) {
+    if (!this.root) {
+      return null;
+    }
+
+    const recurseSearch = (node) => {
+      if (!node) {
+        return null;
+      }
+
+      console.log(node.value);
+      if (node.value === searchNum) {
+        return node;
+      }
+
+      const result = recurseSearch(node.left) || recurseSearch(node.right);
+      if (result) {
+        return result;
+      }
+    };
+
+    const foundNode = recurseSearch(this.root);
+    console.log(foundNode);
+
+    return foundNode;
+  }
 }
 
 const tree = new BinarySearchTree();
@@ -181,7 +206,8 @@ tree.insert(1);
 // tree.remove(170);
 JSON.stringify(traverse(tree.root));
 // console.log(tree.lookup(20));
-tree.breathFirstSearch(15);
+// tree.breathFirstSearch(15);
+tree.depthFirstSearch(15);
 //     9
 //  4     20
 //1  6  15  170
