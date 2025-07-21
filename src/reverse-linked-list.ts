@@ -23,21 +23,19 @@ function reverseList(head: ListNode | null): ListNode | null {
   }
 
   while (!endReached && currNode) {
-    if (!firstProcessed) {
-      nextNode = currNode.next;
-      currNode.next = null;
-      firstProcessed = true;
-      prevNode = currNode;
-      currNode = nextNode;
-      continue;
-    }
+    nextNode = currNode.next;
 
     if (currNode.next === null) {
       endReached = true;
     }
 
-    nextNode = currNode?.next;
-    currNode.next = prevNode;
+    if (!firstProcessed) {
+      currNode.next = null;
+      firstProcessed = true;
+    } else {
+      currNode.next = prevNode;
+    }
+
     prevNode = currNode;
     if (!endReached) {
       currNode = nextNode;
