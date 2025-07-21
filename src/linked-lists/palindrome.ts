@@ -18,6 +18,7 @@ function isPalindrome(head: ListNode | null): boolean {
   let slowPointer = head;
   let fastPointer = head;
   let totalCount = [head.val];
+  let counter = 0;
 
   while (fastPointer.next && fastPointer.next.next) {
     // Move pointers at different rates
@@ -30,12 +31,14 @@ function isPalindrome(head: ListNode | null): boolean {
   }
 
   slowPointer = slowPointer.next!;
+  const totalCountEnd = totalCount.length - 1;
 
   while (slowPointer) {
-    if (slowPointer.val !== totalCount.pop()) {
+    if (slowPointer.val !== totalCount[totalCountEnd - counter]) {
       return false;
     }
 
+    counter++;
     slowPointer = slowPointer.next!;
   }
 
