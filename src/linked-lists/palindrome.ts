@@ -12,25 +12,42 @@ function isPalindrome(head: ListNode | null): boolean {
   if (!head || !head.next) {
     return true;
   }
+  if (head.next.next === null) {
+    return head.val === head.next.val;
+  }
   let slowPointer = head;
-  let fastPointer = head?.next;
+  let fastPointer = head;
   let possibleNextMove = true;
-  let totalCount = 0;
+  let totalCount = [head.val];
+  let isUneven = false;
 
   while (possibleNextMove) {
-    totalCount -= slowPointer.val;
-    totalCount += fastPointer.val;
-    if (!slowPointer.next?.next || !fastPointer.next?.next) {
+    // Move pointers at different rates
+    slowPointer = slowPointer.next!;
+    fastPointer = fastPointer.next?.next!;
+
+    if (!fastPointer.next || !fastPointer.next.next) {
       possibleNextMove = false;
-    } else {
-      slowPointer = slowPointer.next.next;
-      fastPointer = fastPointer.next.next;
+      if (!fastPointer.next) {
+        isUneven = true;
+      }
+    }
+    if (!isUneven) {
+      totalCount.push(slowPointer.val);
     }
   }
 
-  console.log(totalCount);
+  slowPointer = slowPointer.next!;
 
-  return totalCount === 0;
+  while (slowPointer) {
+    if (slowPointer.val !== totalCount.pop()) {
+      return false;
+    }
+
+    slowPointer = slowPointer.next!;
+  }
+
+  return true;
 }
 
 const ln1 = new ListNode(1);
@@ -41,6 +58,7 @@ const ln5 = new ListNode(4);
 const ln6 = new ListNode(3);
 const ln7 = new ListNode(2);
 const ln8 = new ListNode(1);
+// const ln9 = new ListNode(1);
 ln1.next = ln2;
 ln2.next = ln3;
 ln3.next = ln4;
@@ -48,5 +66,6 @@ ln4.next = ln5;
 ln5.next = ln6;
 ln6.next = ln7;
 ln7.next = ln8;
+// // ln8.next = ln9;
 
 isPalindrome(ln1);
