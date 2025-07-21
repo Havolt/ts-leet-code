@@ -13,25 +13,20 @@ function reverseList(head: ListNode | null): ListNode | null {
     return head;
   }
 
-  let currNode: ListNode | null = head;
-  let nextNode: ListNode | null = head.next;
-  let prevNode: ListNode | null = null;
-  let firstProcessed = false;
+  let currNode: ListNode | null = head.next;
+  let nextNode: ListNode | null = currNode.next;
+  let prevNode: ListNode | null = head;
+  head.next = null;
+  // Handle when we onlhy have two items
+  if (!nextNode) {
+    currNode.next = prevNode;
+  }
 
-  while (nextNode && currNode) {
+  while (currNode && nextNode) {
     nextNode = currNode.next;
-
-    if (!firstProcessed) {
-      currNode.next = null;
-      firstProcessed = true;
-    } else {
-      currNode.next = prevNode;
-    }
-
+    currNode.next = prevNode;
     prevNode = currNode;
-    if (nextNode) {
-      currNode = nextNode;
-    }
+    currNode = nextNode ? nextNode : currNode;
   }
 
   return currNode;
