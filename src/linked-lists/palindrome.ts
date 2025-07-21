@@ -17,22 +17,14 @@ function isPalindrome(head: ListNode | null): boolean {
   }
   let slowPointer = head;
   let fastPointer = head;
-  let possibleNextMove = true;
   let totalCount = [head.val];
-  let isUneven = false;
 
-  while (possibleNextMove) {
+  while (fastPointer.next && fastPointer.next.next) {
     // Move pointers at different rates
     slowPointer = slowPointer.next!;
     fastPointer = fastPointer.next?.next!;
 
-    if (!fastPointer.next || !fastPointer.next.next) {
-      possibleNextMove = false;
-      if (!fastPointer.next) {
-        isUneven = true;
-      }
-    }
-    if (!isUneven) {
+    if (fastPointer.next) {
       totalCount.push(slowPointer.val);
     }
   }
@@ -68,4 +60,4 @@ ln6.next = ln7;
 ln7.next = ln8;
 // // ln8.next = ln9;
 
-isPalindrome(ln1);
+console.log(isPalindrome(ln1));
