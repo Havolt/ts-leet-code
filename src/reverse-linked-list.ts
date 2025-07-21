@@ -8,26 +8,18 @@ class ListNode {
 }
 
 function reverseList(head: ListNode | null): ListNode | null {
+  // Early exits
+  if (!head || head.next === null) {
+    return head;
+  }
+
   let currNode: ListNode | null = head;
-  let nextNode: ListNode | null = null;
+  let nextNode: ListNode | null = head.next;
   let prevNode: ListNode | null = null;
-  let endReached = false;
   let firstProcessed = false;
 
-  // Early exits
-  if (!currNode) {
-    return null;
-  }
-  if (currNode.next === null) {
-    return currNode;
-  }
-
-  while (!endReached && currNode) {
+  while (nextNode && currNode) {
     nextNode = currNode.next;
-
-    if (currNode.next === null) {
-      endReached = true;
-    }
 
     if (!firstProcessed) {
       currNode.next = null;
@@ -37,7 +29,7 @@ function reverseList(head: ListNode | null): ListNode | null {
     }
 
     prevNode = currNode;
-    if (!endReached) {
+    if (nextNode) {
       currNode = nextNode;
     }
   }
