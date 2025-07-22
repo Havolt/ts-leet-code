@@ -53,7 +53,6 @@ function removeElements(head: ListNode | null, val: number): ListNode | null {
   let prevPointer: ListNode | null = null;
 
   while (pointer) {
-    //  console.log(pointer);
     // It's a match remove it
     if (pointer.val === val) {
       // We're on the first node
@@ -78,7 +77,6 @@ function removeElements(head: ListNode | null, val: number): ListNode | null {
       }
     }
   }
-  console.log(head);
   return head;
 }
 
