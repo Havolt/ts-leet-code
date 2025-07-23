@@ -1,28 +1,38 @@
 function nextGreatestLetter(letters: string[], target: string): string {
-  if (letters.length === 0) {
-    return "";
-  }
+  const letterCodes = letters.map((letter) => letter.charCodeAt(0));
   const targetCode = target.charCodeAt(0);
 
-  const getNextGreatestLetter = () => {
-    const middleLetterIndex = Math.floor((letters.length - 1) / 2);
-    const middleLetter = letters[middleLetterIndex];
-    const middleLetterCode = middleLetter.charCodeAt(0);
+  const getNextGreatestLetter = (letterCodes, target, index = 0) => {
+    if (letterCodes.length === 0) {
+      return index;
+    }
+    const middleLetterIndex = Math.floor((letterCodes.length - 1) / 2);
+    const middleLetter = letterCodes[middleLetterIndex];
 
-    console.log(middleLetter);
-    console.log({ middleLetterCode });
-    console.log({ targetCode });
-    if (middleLetter === target) {
-      console.log("target found");
-      return middleLetter;
-    } else if (targetCode < middleLetterCode) {
-      return nextGreatestLetter(letters.slice(0, middleLetterIndex), target);
+    if (middleLetter === targetCode) {
+      return index + middleLetterIndex;
+    } else if (targetCode < middleLetter) {
+      return getNextGreatestLetter(
+        letterCodes.slice(0, middleLetterIndex),
+        target,
+        index
+      );
     } else {
-      return nextGreatestLetter(letters.slice(middleLetterIndex + 1), target);
+      return getNextGreatestLetter(
+        letterCodes.slice(middleLetterIndex + 1),
+        target,
+        index + middleLetterIndex + 1
+      );
     }
   };
 
-  return getNextGreatestLetter() || letters[0];
+  const getNearestIndex = getNextGreatestLetter(letterCodes, target);
+
+  console.log(getNearestIndex);
+
+  return "";
+
+  //   return getNextGreatestLetter(letterCodes, target) || letters[0];
 }
 
-nextGreatestLetter(["c", "f", "j"], "c");
+nextGreatestLetter(["a", "b", "c", "f", "j"], "e");
