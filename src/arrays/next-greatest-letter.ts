@@ -1,32 +1,32 @@
 function nextGreatestLetter(letters: string[], target: string): string {
-  const letterCodes = letters.map((letter) => letter.charCodeAt(0));
   const targetCode = target.charCodeAt(0);
 
-  const getNextGreatestLetter = (letterCodes, target, index = 0) => {
-    if (letterCodes.length === 0) {
+  const getNextGreatestLetter = (letters, target, index = 0) => {
+    if (letters.length === 0) {
       return index;
     }
-    const middleLetterIndex = Math.floor((letterCodes.length - 1) / 2);
-    const middleLetter = letterCodes[middleLetterIndex];
+    const middleLetterIndex = Math.floor((letters.length - 1) / 2);
+    const middleLetter = letters[middleLetterIndex];
+    const middleLetterCode = middleLetter.charCodeAt(0);
 
-    if (middleLetter === targetCode) {
+    if (middleLetterCode === targetCode) {
       return index + middleLetterIndex;
-    } else if (targetCode < middleLetter) {
+    } else if (targetCode < middleLetterCode) {
       return getNextGreatestLetter(
-        letterCodes.slice(0, middleLetterIndex),
+        letters.slice(0, middleLetterIndex),
         target,
         index
       );
     } else {
       return getNextGreatestLetter(
-        letterCodes.slice(middleLetterIndex + 1),
+        letters.slice(middleLetterIndex + 1),
         target,
         index + middleLetterIndex + 1
       );
     }
   };
 
-  let getNearestIndex = getNextGreatestLetter(letterCodes, target);
+  let getNearestIndex = getNextGreatestLetter(letters, target);
 
   while (
     letters[getNearestIndex] === target &&
