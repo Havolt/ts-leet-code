@@ -26,13 +26,20 @@ function nextGreatestLetter(letters: string[], target: string): string {
     }
   };
 
-  const getNearestIndex = getNextGreatestLetter(letterCodes, target);
+  let getNearestIndex = getNextGreatestLetter(letterCodes, target);
 
-  console.log(getNearestIndex);
+  while (
+    letters[getNearestIndex] === target &&
+    getNearestIndex <= letters.length
+  ) {
+    getNearestIndex++;
+  }
 
-  return "";
-
-  //   return getNextGreatestLetter(letterCodes, target) || letters[0];
+  if (getNearestIndex < letters.length) {
+    return letters[getNearestIndex];
+  } else {
+    return letters[0];
+  }
 }
 
-nextGreatestLetter(["a", "b", "c", "f", "j"], "e");
+console.log(nextGreatestLetter(["a", "b", "c", "f", "j"], "j"));
