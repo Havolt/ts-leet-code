@@ -15,20 +15,24 @@ function minDepth(root: TreeNode | null): number {
   }
   let smallestFound: number | null = null;
   const getNextLevel = (node, currentLevel) => {
+    if (!node.left && !node.right) {
+      if (smallestFound === null || currentLevel < smallestFound) {
+        smallestFound = currentLevel;
+        if (smallestFound === 1) {
+          return;
+        }
+      }
+    }
     if (node.left) {
       getNextLevel(node.left, currentLevel + 1);
     }
     if (node.right) {
       getNextLevel(node.right, currentLevel + 1);
     }
-    if (!node.left && !node.right) {
-      if (smallestFound === null || currentLevel < smallestFound) {
-        smallestFound = currentLevel;
-      }
-    }
   };
 
   getNextLevel(root, 1);
+  console.log(smallestFound);
   return smallestFound || 0;
 }
 
@@ -38,10 +42,16 @@ function minDepth(root: TreeNode | null): number {
 //   new TreeNode(20, new TreeNode(15), new TreeNode(7))
 // );
 
+// const rootNode = new TreeNode(
+//   2,
+//   null,
+//   new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, null)))
+// );
+
 const rootNode = new TreeNode(
-  2,
-  null,
-  new TreeNode(3, null, new TreeNode(4, null, new TreeNode(5, null, null)))
+  1,
+  new TreeNode(2, new TreeNode(4), new TreeNode(5)),
+  new TreeNode(3)
 );
 
 //     3
