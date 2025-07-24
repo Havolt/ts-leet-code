@@ -9,49 +9,51 @@ class TreeNode {
   }
 }
 
-class Tree {}
-
 function averageOfLevels(root: TreeNode | null): number[] {
   if (!root) {
     return [];
   }
 
-  const treeOrder: (TreeNode | null)[] = [root.left, root.right];
+  const treeOrder: TreeNode[] = [];
   const levelAverage: number[] = [];
-  let currentAverageTally = 0;
-  let cutOffSize = 2;
-  let counter = 0;
-  let actualNumberCounter = 0;
-
+  let currentLevelLimit = 0;
+  let nextLevelLimit = 0;
+  let currentTally = 0;
   levelAverage.push(root.val);
 
-  console.log(levelAverage);
+  if (!root.left && !root.right) {
+    return levelAverage;
+  }
+  if (root.left) {
+    treeOrder.push(root.left);
+    currentLevelLimit++;
+  }
+  if (root.right) {
+    treeOrder.push(root.right);
+    currentLevelLimit++;
+  }
 
-  // Get all the left and right vals for the current level and add to array
-  // Loop through array and average out values
-  // While looping add the values to an array for next level
   while (treeOrder.length > 0) {
-    console.log(treeOrder);
-    const currentItem = treeOrder.shift();
-    if (currentItem) {
-      currentAverageTally += currentItem?.val || 0;
-      treeOrder.push(currentItem!.left);
-      treeOrder.push(currentItem!.right);
-      actualNumberCounter++;
+    for (let i = 0; i < currentLevelLimit; i++) {
+      // ! Time consuming shift operation could be made into a queue
+      const currentNode: TreeNode = treeOrder.shift()!;
+      currentTally += currentNode?.val || 0;
+      if (currentNode.left) {
+        treeOrder.push(currentNode.left);
+        nextLevelLimit++;
+      }
+      if (currentNode.right) {
+        treeOrder.push(currentNode.right);
+        nextLevelLimit++;
+      }
     }
-    counter++;
-
-    if (counter === cutOffSize) {
-      levelAverage.push(currentAverageTally / actualNumberCounter);
-      counter = 0;
-      cutOffSize *= 2;
-      actualNumberCounter = 0;
-      currentAverageTally = 0;
-    }
+    levelAverage.push(currentTally / currentLevelLimit);
+    currentTally = 0;
+    currentLevelLimit = nextLevelLimit;
+    nextLevelLimit = 0;
   }
 
   console.log(levelAverage);
-
   return levelAverage;
 }
 
