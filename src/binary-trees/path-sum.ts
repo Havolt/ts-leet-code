@@ -56,7 +56,30 @@ class Tree {
 }
 
 function hasPathSum(root: TreeNode | null, targetSum: number): boolean {
-  return true;
+  if (!root) {
+    return false;
+  }
+  let hasSum = false;
+  const drill = (node, targetSum, total = 0) => {
+    if (!node.left && !node.right) {
+      const leafTotal = total + node.val;
+      if (leafTotal === targetSum) {
+        hasSum = true;
+      }
+    }
+    if (node.left && !hasSum) {
+      drill(node.left, targetSum, total + node.val);
+    }
+    if (node.right && !hasSum) {
+      drill(node.right, targetSum, total + node.val);
+    }
+  };
+
+  drill(root, targetSum);
+
+  console.log(hasSum);
+
+  return hasSum;
 }
 
 const testTree = new Tree([
@@ -75,5 +98,12 @@ const testTree = new Tree([
   1,
 ]);
 
-console.log(testTree.head);
-console.log(testTree.size);
+const testTree2 = new Tree([1, 2, 3]);
+const testTree3 = new Tree([1, 2]);
+
+hasPathSum(testTree.head, 22);
+hasPathSum(testTree2.head, 5);
+hasPathSum(testTree3.head, 1);
+
+// console.log(testTree.head);
+// console.log(testTree.size);
