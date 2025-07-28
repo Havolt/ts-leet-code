@@ -2,21 +2,28 @@
  Do not return anything, modify nums in-place instead.
  */
 function moveZeroes(nums: number[]): void {
-  let lastNonZeroPosition = nums.length - 1;
-  let counter = 0;
-  for (let i = nums.length - 1; i >= 0; i--) {
-    if (nums[i] === 0) {
-      for (let j = i; j < lastNonZeroPosition; j++) {
-        nums[j] = nums[j + 1];
-      }
-      nums[lastNonZeroPosition] = 0;
-      lastNonZeroPosition--;
-    } else if (nums[i] === 0) {
-      lastNonZeroPosition--;
+  let zerosFound = 0;
+  let currentPointer = 0;
+
+  for (const num of nums) {
+    if (num === 0) {
+      zerosFound++;
     }
   }
-  console.log(counter);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      console.log(nums[i]);
+      nums[currentPointer] = nums[i];
+      currentPointer++;
+    }
+  }
+
+  for (let i = nums.length - zerosFound; i < nums.length; i++) {
+    nums[i] = 0;
+  }
   console.log(nums);
 }
 
-moveZeroes([0, 0, 1]);
+// moveZeroes([0, 0, 1]);
+moveZeroes([0, 1, 0, 3, 12]);
