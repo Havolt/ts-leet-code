@@ -18,7 +18,7 @@ function sortedSquares(nums: number[]): number[] {
   }
 
   console.log(sortedArr);
-  return [];
+  return sortedArr;
 }
 
 sortedSquares([-4, -1, 0, 3, 10]);
