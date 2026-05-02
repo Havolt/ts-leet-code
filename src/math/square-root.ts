@@ -9,8 +9,14 @@ function mySqrt(x: number): number {
 
   const maxVal = Math.floor(x / 2) + 2;
   const minVal = 2;
+  const currVal = Math.floor((maxVal - minVal) / 2);
 
-  const getRoot = (min: number, max: number, curr: number) => {
+  const getRoot = (
+    min: number,
+    max: number,
+    curr: number,
+    prev: number | null,
+  ) => {
     const currSquare = curr * curr;
 
     console.log({ min, max, curr });
@@ -31,25 +37,32 @@ function mySqrt(x: number): number {
       jumpDirection = 1;
     }
 
-    const nextJump = curr + Math.floor((newMax - newMin) / 2) * jumpDirection;
+    if (curr === prev) {
+      return curr;
+    }
+
+    const halfwayPoint = Math.floor((newMax - newMin) / 2);
+
+    console.log({ halfwayPoint });
+
+    const nextJump = curr + halfwayPoint * jumpDirection;
 
     console.log({ nextJump });
 
     console.log(newMin, newMax, nextJump);
 
-    //  getRoot(newMax, newMin, (newMax - newMin) / 2);
+    if (newMin === newMax) {
+      return curr;
+    }
+
+    return getRoot(newMin, newMax, nextJump, curr);
   };
 
-  getRoot(minVal, maxVal, (maxVal - minVal) / 2);
+  const squareRoot = getRoot(minVal, maxVal, currVal, null);
 
-  // We need to divide number (x) in half and ter the floor
-  // We then check what that number (n) is multiplied by itself
-  // If (n) matches (x) then return the root of (n)
-  // If the square of (n) is higher than (x) then get the current jump to (n) and divide it in half, subtract this from (n) to get (o)
-  // If the square of (n) is lower than (x) then get the current jump to (n) and divide it in half, subtract this from (n)
-  // Recall the function with the new (o) and the jump start over
+  console.log({ squareRoot });
 
   return 0;
 }
 
-mySqrt(100);
+mySqrt(22);
