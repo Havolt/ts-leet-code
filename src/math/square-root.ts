@@ -9,60 +9,71 @@ function mySqrt(x: number): number {
 
   const maxVal = Math.floor(x / 2) + 2;
   const minVal = 2;
-  const currVal = Math.floor((maxVal - minVal) / 2);
+  const currVal = minVal + Math.floor((maxVal - minVal) / 2);
 
-  const getRoot = (
-    min: number,
-    max: number,
-    curr: number,
-    prev: number | null,
-  ) => {
-    const currSquare = curr * curr;
+  const getRoot = (min: number, max: number, currentRoot: number) => {
+    // console.log("-------------------");
+    // console.log({ min, max, currentRoot });
+    const currentSquare = currentRoot * currentRoot;
+    let nextIterationMin = min;
+    let nextIterationMax = max;
 
-    console.log({ min, max, curr });
+    // console.log({ currentSquare });
 
-    let newMin = min;
-    let newMax = max;
-    let jumpDirection = null;
-
-    if (currSquare === x) {
-      return curr;
-    } else if (currSquare > x) {
-      console.log("Im larger", { currSquare });
-      newMax = curr;
-      jumpDirection = -1;
-    } else {
-      console.log("im smaller", { currSquare });
-      newMin = curr;
-      jumpDirection = 1;
+    if (currentSquare === x) {
+      return currentRoot;
+    } else if (currentSquare > x) {
+      // console.log("current square is greater than x");
+      nextIterationMax = currentRoot;
+    } else if (currentSquare < x) {
+      // console.log("current square is less than x");
+      nextIterationMin = currentRoot;
     }
 
-    if (curr === prev) {
-      return curr;
+    if (nextIterationMin === nextIterationMax) {
+      return nextIterationMin;
     }
 
-    const halfwayPoint = Math.floor((newMax - newMin) / 2);
+    if (nextIterationMax - nextIterationMin === 1) {
+      const nextMaxSquare = nextIterationMax * nextIterationMax;
 
-    console.log({ halfwayPoint });
-
-    const nextJump = curr + halfwayPoint * jumpDirection;
-
-    console.log({ nextJump });
-
-    console.log(newMin, newMax, nextJump);
-
-    if (newMin === newMax) {
-      return curr;
+      if (nextMaxSquare <= x) {
+        return nextIterationMax;
+      } else {
+        return nextIterationMin;
+      }
     }
 
-    return getRoot(newMin, newMax, nextJump, curr);
+    const differenceMiddle = Math.floor(
+      (nextIterationMax - nextIterationMin) / 2,
+    );
+
+    // console.log("---------");
+    // console.log({ nextIterationMax });
+    // console.log({ nextIterationMin });
+    // console.log("----------");
+
+    if (differenceMiddle === 0) {
+      // console.log({ min });
+      return min;
+    }
+
+    // console.log({ differenceMiddle });
+
+    const nextPosition = differenceMiddle + nextIterationMin;
+
+    console.log({ nextIterationMax, nextIterationMin, nextPosition });
+
+    return getRoot(nextIterationMin, nextIterationMax, nextPosition);
   };
 
-  const squareRoot = getRoot(minVal, maxVal, currVal, null);
+  // console.log({ currVal });
+
+  const squareRoot = getRoot(minVal, maxVal, currVal);
 
   console.log({ squareRoot });
 
-  return 0;
+  return squareRoot;
 }
 
-mySqrt(22);
+mySqrt(225);
