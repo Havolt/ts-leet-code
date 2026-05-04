@@ -12,15 +12,28 @@ function rotateString(s: string, goal: string): boolean {
 
   const firstLetterLocationGoal = [];
 
-  for (let i = 0; i < goalSplit.length; i++) {
-    if (goalSplit[i] === initSplit[0]) {
+  for (let i = 0; i < initSplit.length; i++) {
+    if (initSplit[i] === goalSplit[0]) {
       firstLetterLocationGoal.push(i);
     }
   }
 
+  for (let i = 0; i < firstLetterLocationGoal.length; i++) {
+    const position = firstLetterLocationGoal[i];
+
+    const newArr = initSplit
+      .slice(position)
+      .concat(initSplit.slice(0, position));
+
+    if (newArr.join("") === goal) {
+      return true;
+    }
+    console.log({ position });
+  }
+
   console.log({ firstLetterLocationGoal });
 
-  return true;
+  return false;
 }
 
 rotateString("abcde", "cdeab");
