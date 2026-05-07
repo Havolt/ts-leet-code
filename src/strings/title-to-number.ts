@@ -15,7 +15,7 @@ function titleToNumber(columnTitle: string): number {
     currentMultiplier *= COLUMN_MULTIPLE;
   }
 
-  return 1;
+  return tally;
 }
 
 titleToNumber("A");
