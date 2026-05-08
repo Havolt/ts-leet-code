@@ -1,49 +1,30 @@
 function isIsomorphic(s: string, t: string): boolean {
-  if (s.length !== t.length) return false;
-
-  type StringMap = {
-    [key: string]: number;
+  type CharacterMap = {
+    [key: string]: string;
   };
 
-  const sMap: StringMap = {};
-  const tMap: StringMap = {};
-  const sSums: StringMap = {};
-  const tSums: StringMap = {};
+  const characterMap: CharacterMap = {};
 
-  // Get a list of the amount of times each letter appears
+  const usedCharactersT = new Set<string>();
+
+  if (s.length !== t.length) {
+    return false;
+  }
+
   for (let i = 0; i < s.length; i++) {
-    const sCount = sMap[s[i]] || 0;
-    const tCount = tMap[t[i]] || 0;
-
-    sMap[s[i]] = sCount + 1;
-    tMap[t[i]] = tCount + 1;
-  }
-
-  // Count of different letters in string s
-  for (let mapKey in sMap) {
-    const mapValue = sMap[mapKey];
-    const sumTotalCount = sSums[mapValue] || 0;
-    sSums[mapValue] = sumTotalCount + 1;
-  }
-  // Count of different letters in string t
-  for (let mapKey in tMap) {
-    const mapValue = tMap[mapKey];
-    const sumTotalCount = tSums[mapValue] || 0;
-    tSums[mapValue] = sumTotalCount + 1;
-  }
-
-  for (let sSumKey in sSums) {
-    if (sSums[sSumKey] !== tSums[sSumKey]) {
-      console.log("nope");
-      return false;
+    const currChar = s[i];
+    if (!characterMap[currChar]) {
+      if (usedCharactersT.has(t[i])) {
+        return false;
+      }
+      characterMap[currChar] = t[i];
+      usedCharactersT.add(t[i]);
+    } else {
+      if (characterMap[currChar] !== t[i]) {
+        return false;
+      }
     }
   }
-
-  console.log({ sSums });
-  console.log({ tSums });
-
-  console.log("yup");
-
   return true;
 }
 
