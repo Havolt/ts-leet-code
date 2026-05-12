@@ -6,7 +6,7 @@
  */
 
 const badVersion = (n: number) => {
-  return n >= 4;
+  return n >= 67;
 };
 
 var solution = function (isBadVersion: any) {
@@ -19,11 +19,8 @@ var solution = function (isBadVersion: any) {
     let leftBoundary = 0;
     let rightBoundary = n;
 
-    //  Need a remaining size check, we jump that amount
-    // Now split the remaining size in half and jump again in the relevant direction
-    // Repeat until we have one distance
-
     while (rightBoundary - leftBoundary > 1) {
+      pointer = Math.floor((rightBoundary - leftBoundary) / 2) + leftBoundary;
       if (isBadVersion(pointer)) {
         console.log("isBad");
         rightBoundary = pointer;
@@ -31,14 +28,10 @@ var solution = function (isBadVersion: any) {
         console.log("isGood");
         leftBoundary = pointer;
       }
-      pointer = Math.floor((rightBoundary - leftBoundary) / 2) + leftBoundary;
     }
 
-    console.log({ leftBoundary });
-    console.log({ rightBoundary });
-
-    return 0;
+    return rightBoundary;
   };
 };
 
-solution(badVersion)(6);
+solution(badVersion)(205);
