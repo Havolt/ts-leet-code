@@ -1,19 +1,26 @@
 function containsNearbyDuplicate(nums: number[], k: number): boolean {
   const numsHash: { [key: string]: number } = {};
-  const duplicatePositions: { [key: string]: number[] } = {};
 
-  nums.forEach((num, index) => {
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
     if (typeof numsHash[num] === typeof undefined) {
-      numsHash[num] = index;
-    } else if (typeof duplicatePositions[num] === typeof undefined) {
-      duplicatePositions[num] = [numsHash[num], index];
+      numsHash[num] = i + 1;
     } else {
-      duplicatePositions[num].push(index);
-    }
-  });
+      const storedPos = numsHash[num];
+      const currentPos = i + 1;
 
-  console.log({ duplicatePositions });
-  return true;
+      // console.log({ storedPos });
+      // console.log({ currentPos });
+      if (currentPos - storedPos <= k) {
+        return true;
+      } else {
+        numsHash[num] = i + 1;
+      }
+    }
+  }
+
+  // console.log({ numsHash });
+  return false;
 }
 
-containsNearbyDuplicate([2, 4, 5, 2, 7, 2], 5);
+containsNearbyDuplicate([2, 4, 5, 2, 7, 2], 3);
